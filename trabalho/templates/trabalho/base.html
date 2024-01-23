@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'trabalho/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'trabalho/css/styles.css' %}" />
+    <title>{% block titulo %}Anitta{% endblock %}</title>
+</head>
+<script src="{% static 'trabalho/js/jquery-1.12.4.js' %}"></script>
+<script src="{% static 'trabalho/js/bootstrap.js' %}"></script>
+<script src="{% static 'trabalho/js/script.js' %}"></script>
+<body>
+<div id="menu"></div>
+{% block content %}
+{% endblock %}
+<div id="footer"></div>
+<script>
+    $(function()
+    {
+        $("#menu").load("{% url 'trabalho:menu'%}");
+        $("#footer").load("{% url 'trabalho:footer'%}");
+    });
+</script>
+</body>
+</html>

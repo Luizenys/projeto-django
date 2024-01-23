@@ -1,0 +1,120 @@
+{% extends 'trabalho/base.html' %}
+
+{% load static %}
+
+{% block titulo %}Cadastro{% endblock %}
+
+{% block content %}
+    <header class="bgimage hidden-xs"></header>
+
+    <div class="container">
+        <div class="row">
+            <div class="text-center" style="color:ghostwhite"><h1>Agendar Show</h1></div>
+            <br/>
+            <div class="col-sm-10 col-sm-offset-2">
+                {% if form.errors %}
+                    <h4><strong>Por favor, corrija o{{ form.errors | pluralize }} erro{{ form.errors | pluralize }} abaixo:</strong></h4>
+                {% endif %}
+            </div>
+            <form class="form-horizontal" action ="{% url 'trabalho:cadastro' %}" method ="post" novalidate>
+                <input name="id" type="hidden" value="{{ form.id.value }}">
+                <div class="row">
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 col-md-2 control-label" for="id_local" style="color:darkgrey">Local do show</label>
+                        <div class="col-sm-8 col-md-10{% if form.local.errors %} has-error{% elif request.POST %} has-success{% endif %}">
+                            <input class="form-control input-sm"
+                                   name="local"
+                                   type="text"
+                                   id="id_local"
+                                   placeholder="Local do show"
+                                   maxlength="200"
+                                   value="{{ form.local.value }}">
+                            {% if form.local.errors %}
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            {% elif request.POST %}
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-2"></div>
+
+                        {% if form.local.errors %}
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <div class="alert alert-danger">
+                                    {% for error in form.local.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 col-md-2 control-label" for="id_endereco" style="color:darkgrey">Nome da Imagem</label>
+                        <div class="col-sm-8 col-md-4{% if form.endereco.errors %} has-error{% elif request.POST %} has-success{% endif %}">
+                            <input class="form-control input-sm"
+                                   name="endereco"
+                                   type="text"
+                                   id="id_endereco"
+                                   placeholder="Nome da Imagem (endereço)"
+                                   maxlength="200"
+                                   value="{{ form.endereco.value }}">
+                            {% if form.endereco.errors %}
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            {% elif request.POST %}
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            {% endif %}
+                        </div>
+
+                        {% if form.endereco.errors %}
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <div class="alert alert-danger">
+                                    {% for error in form.endereco.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        {% endif %}
+
+                        <label class="col-sm-2 col-md-2 control-label" for="id_data" style="color:darkgrey">Data do show</label>
+                        <div class="col-sm-8 col-md-4{% if form.data.errors %} has-error{% elif request.POST %} has-success{% endif %}">
+                            <input class="form-control input-sm"
+                                   name="data"
+                                   type="text"
+                                   id="id_data"
+                                   placeholder="Data do show (dd/mm/aaaa)"
+                                   maxlength="200"
+                                   value="{{ form.data.value }}">
+                            {% if form.data.errors %}
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            {% elif request.POST %}
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            {% endif %}
+                        </div>
+
+                        {% if form.data.errors %}
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <div class="alert alert-danger">
+                                    {% for error in form.data.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-md-2 col-sm-offset-2 col-md-offset-5">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info btn-block">
+                            <span class="glyphicon glyphicon-check" style="color:#e65100"></span> Enviar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- row -->
+    </div><!-- content container -->
+{% endblock %}

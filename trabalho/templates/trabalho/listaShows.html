@@ -1,0 +1,18 @@
+{% extends 'trabalho/base.html' %}
+{% load static%}
+{% block content %}
+    {% static "trabalho/images/" as baseUrl %}
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center center-block" style="color: #CDC9C9">Shows</h1>
+            {% for show in lista_de_shows %}
+                <a href="{% url 'trabalho:show' show.id  %}"><div class="row">
+                    <img src="{{ baseUrl }}{{ show.endereco }}" alt="{{ show.endereco }}" class="col-xs-3">
+                    <p><h3 class="text-center center-block">{{ show.local }}</h3></p>
+                    <p><h3 class="text-center center-block">>{{ show.data }}</h3></p>
+                </div></a>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

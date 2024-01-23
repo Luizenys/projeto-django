@@ -1,0 +1,22 @@
+{% extends 'trabalho/base.html' %}
+{% load static%}
+{% block content %}
+    {% static "trabalho/images/" as baseUrl %}
+    <br><br>
+    <div class="container">
+        <div class="text-center">
+            <h1  style="color: deepskyblue">
+                Show {% if acao == 'agendado' %}Agendado{% elif acao == 'alterado' %}
+                                                Alterado{% else %}
+                                                Removido{% endif %} com Sucesso!
+            </h1>
+        </div>
+        {% include "trabalho/subpaginas/showInfo.html" %}
+        <br/>
+        {% if acao != 'removido' %}
+            {% include "trabalho/subpaginas/botoes.html" %}
+        {% endif %}
+        <br>
+        </div>
+    <br/>
+{% endblock %}
